@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class Obstacle : MonoBehaviour
 {
-    //this class is used for create the controller of player will allows player to use key like WASD to control the rocket movement
-    
+    //This class is for various feature of obstacles like the movement, the rigidbody and some physical attributes
+
     // Start is called before the first frame update
     void Start()
     {

@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class Score : MonoBehaviour
 {
-    //this class is used for create the controller of player will allows player to use key like WASD to control the rocket movement
-    
+    // this class is to measure the score of player after passing levels
+
     // Start is called before the first frame update
     void Start()
     {

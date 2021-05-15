@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class EnemyAI : MonoBehaviour
 {
-    //this class is used for create the controller of player will allows player to use key like WASD to control the rocket movement
-    
+    //This class is for enemy, which is cannon in this case to shoot bullet and the interaction between player rocket and enemy
+   
     // Start is called before the first frame update
     void Start()
     {

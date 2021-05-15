@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class QuitApp : MonoBehaviour
 {
-    //this class is used for create the controller of player will allows player to use key like WASD to control the rocket movement
+    //for using ESC to quit the game
     
     // Start is called before the first frame update
     void Start()
