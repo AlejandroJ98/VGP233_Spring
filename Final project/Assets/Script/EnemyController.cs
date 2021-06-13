@@ -22,6 +22,8 @@ public class EnemyController : MonoBehaviour
     public float fireRate, waitBetweenShots = 2f, timeToShoot = 1.0f;
     private float fireCount, shotWaitCounter, shootTimeCounter;
 
+    public Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -55,6 +57,15 @@ public class EnemyController : MonoBehaviour
                     agent.destination = startPoint;
                 }
             }
+
+            if(agent.remainingDistance < .25f)
+            {
+                anim.SetBool("isMoving", false);
+            }
+            else
+            {
+                anim.SetBool("isMoving", true);
+            }
         }
         else
         {
@@ -87,6 +98,8 @@ public class EnemyController : MonoBehaviour
                 {
                     shootTimeCounter = timeToShoot;
                 }
+
+                anim.SetBool("isMoving", true);
             }else
             {
                 shootTimeCounter -= Time.deltaTime;
@@ -98,7 +111,23 @@ public class EnemyController : MonoBehaviour
                     {
                         fireCount = fireRate;
 
-                        Instantiate(bullet, firePoint.position, firePoint.rotation);
+                        firePoint.LookAt(PlayerController.instance.transform.position + new Vector3(0f, 1.2f, 0f));
+
+                        //check the angle to the player
+                        Vector3 targetDir = PlayerController.instance.transform.position - transform.position;
+                        float angle = Vector3.SignedAngle(targetDir, transform.forward, Vector3.up);
+
+                        if(Mathf.Abs(angle) < 30f)
+                        {
+                            Instantiate(bullet, firePoint.position, firePoint.rotation);
+
+                            anim.SetTrigger("fireShot");
+                        }
+                        else
+                        {
+                            shotWaitCounter = waitBetweenShots;
+                        }
+
                     }
                     agent.destination = transform.position;
                 }
@@ -107,6 +136,7 @@ public class EnemyController : MonoBehaviour
                 {
                     shotWaitCounter = waitBetweenShots;
                 }
+                anim.SetBool("isMoving", false);
             }
 
         }
