@@ -121,8 +121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bab8380993a80ce4e9e730975a91ea56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceToChase: 20
-  distanceToLose: 40
+  distanceToChase: 30
+  distanceToLose: 50
   distanceToStop: 2
   agent: {fileID: 168790055066286777}
   keepChasingTime: 5
