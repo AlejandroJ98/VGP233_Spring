@@ -1,20 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class UIController : MonoBehaviour
+public class AudioManager : MonoBehaviour
 {
-    public static UIController instance;
+    public static AudioManager instance;
 
-    public Slider healthSlider;
-    public Text healthText, ammoText;
-
+    public AudioSource bgm;
     private void Awake()
     {
         instance = this;
     }
-
     // Start is called before the first frame update
     void Start()
     {
@@ -25,5 +21,10 @@ public class UIController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void StopBGM()
+    {
+        bgm.Stop();
     }
 }

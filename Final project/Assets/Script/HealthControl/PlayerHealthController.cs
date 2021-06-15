@@ -40,6 +40,8 @@ public class PlayerHealthController : MonoBehaviour
         {
             currentHealth -= damageAmount;
 
+            UIController.instance.ShowDamage();
+
             if(currentHealth <= 0)
             {
                 gameObject.SetActive(false);
@@ -47,6 +49,8 @@ public class PlayerHealthController : MonoBehaviour
                 currentHealth = 0;
 
                 GameManager.instance.PlayerDied();
+
+                AudioManager.instance.StopBGM();
             }
 
             invincCounter = invincibleLength;
