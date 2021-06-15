@@ -36,7 +36,7 @@ public class PlayerHealthController : MonoBehaviour
 
     public void Damageplayer(int damageAmount)
     {
-        if(invincCounter <= 0)
+        if(invincCounter <= 0 && !GameManager.instance.levelEnding)
         {
             AudioManager.instance.PlaySFX(7);
 
@@ -53,7 +53,6 @@ public class PlayerHealthController : MonoBehaviour
                 GameManager.instance.PlayerDied();
 
                 AudioManager.instance.StopBGM();
-
                 AudioManager.instance.PlaySFX(6);
                 AudioManager.instance.StopSFX(7);
             }

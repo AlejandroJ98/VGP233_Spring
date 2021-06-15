@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 
     public float waitAfterDying = 2.0f;
 
+    [HideInInspector]
+    public bool levelEnding;
     private void Awake()
     {
         instance = this;
