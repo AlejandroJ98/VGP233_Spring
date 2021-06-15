@@ -48,6 +48,9 @@ public class GameManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
 
             Time.timeScale = 1.0f;
+
+            PlayerController.instance.footstepFast.Play();
+            PlayerController.instance.footstepSlow.Play();
         }
         else
         {
@@ -56,6 +59,9 @@ public class GameManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
 
             Time.timeScale = 0;
+
+            PlayerController.instance.footstepFast.Stop();
+            PlayerController.instance.footstepSlow.Stop();
         }
     }
 }
