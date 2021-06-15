@@ -12,7 +12,14 @@ public class Gun : MonoBehaviour
     [HideInInspector]
     public float fireCounter;
 
-    public int currentAmmo;
+    public int currentAmmo, pickupAmount;
+
+    public Transform firepoint;//set the different firepoint
+
+    public float zoomAmount;
+
+    public string gunName;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,5 +33,12 @@ public class Gun : MonoBehaviour
         {
             fireCounter -= Time.deltaTime;
         }
+    }
+
+    public void GetAmmo()
+    {
+        currentAmmo += pickupAmount;
+
+        UIController.instance.ammoText.text = "AMMO  " + currentAmmo;
     }
 }
