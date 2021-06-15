@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     public GameObject bullet;
     public Transform firePoint;
 
+    public Gun activeGun;//for switching weapons
+
     private void Awake()
     {
         instance = this;
@@ -34,7 +36,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        UIController.instance.ammoText.text = "AMMO  " + activeGun.currentAmmo;
     }
 
     // Update is called once per frame
@@ -111,7 +113,8 @@ public class PlayerController : MonoBehaviour
 
 
         //Handle shooting
-        if(Input.GetMouseButtonDown(0))
+        //single shot
+        if(Input.GetMouseButtonDown(0) && activeGun.fireCounter <= 0)//make sure player can't keep shooting by mouse 0
         {
             RaycastHit hit;
             if(Physics.Raycast(camTrans.position, camTrans.forward, out hit, 50.0f))
@@ -126,10 +129,35 @@ public class PlayerController : MonoBehaviour
                 firePoint.LookAt(camTrans.position + (camTrans.forward * 30.0f));
             }
 
-            Instantiate(bullet, firePoint.position, firePoint.rotation);
+            // Instantiate(bullet, firePoint.position, firePoint.rotation);
+            FireShot();
+        }
+
+        //repeating shots
+        if(Input.GetMouseButton(0) && activeGun.canAutoFire)// fire until it meet both condition
+        {
+            if(activeGun.fireCounter <= 0)
+            {
+                FireShot();
+            }
         }
 
         anim.SetFloat("moveSpeed", moveInput.magnitude);
         anim.SetBool("onGround", canJump);
+    }
+
+    public void FireShot()
+    {
+        if(activeGun.currentAmmo > 0)
+        {
+            activeGun.currentAmmo--;
+
+            Instantiate(activeGun.bullets, firePoint.position, firePoint.rotation);
+
+            activeGun.fireCounter = activeGun.fireRate;
+
+            UIController.instance.ammoText.text = "AMMO  " + activeGun.currentAmmo;
+        }
+
     }
 }

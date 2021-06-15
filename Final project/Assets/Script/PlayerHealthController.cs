@@ -43,6 +43,10 @@ public class PlayerHealthController : MonoBehaviour
             if(currentHealth <= 0)
             {
                 gameObject.SetActive(false);
+
+                currentHealth = 0;
+
+                GameManager.instance.PlayerDied();
             }
 
             invincCounter = invincibleLength;
@@ -52,4 +56,17 @@ public class PlayerHealthController : MonoBehaviour
         }
 
     }
+    public void HealPlayer(int healAmount)//pickup function
+    {
+        currentHealth += healAmount;
+
+        if(currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+
+        UIController.instance.healthSlider.value = currentHealth;
+        UIController.instance.healthText.text = "HEALTH:" + currentHealth + "/" + maxHealth;
+    }
 }
+
